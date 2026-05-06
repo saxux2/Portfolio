@@ -218,7 +218,7 @@ export default function Home() {
             <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-zinc-950/80 p-3 shadow-2xl shadow-black/30">
               <div className="relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-zinc-900">
                 <Image
-                  src="/api/profile-image"
+                  src="/profile.jpeg"
                   alt="Akash Biswas"
                   width={340}
                   height={420}
