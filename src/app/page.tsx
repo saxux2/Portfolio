@@ -68,7 +68,75 @@ const projects = [
     ],
     codeHref: "https://github.com/saxux2/Relixa",
     liveHref: "https://relixa.vercel.app/",
+    image: "/relixa-landing.png",
+    logo: "",
     accent: "from-blue-600/30 via-blue-500/20 to-transparent",
+  },
+  {
+    title: "Vault",
+    description:
+      "A zero-knowledge prediction market where forecasters stake on numeric ranges instead of binary outcomes, with positions encrypted until settlement.",
+    tags: [
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Express",
+      "Circom",
+      "Groth16",
+      "Stellar",
+      "Soroban",
+      "Rust",
+    ],
+    codeHref: "https://github.com/saxux2/Vault",
+    liveHref: "https://vaultstellar.vercel.app",
+    image: "/vault-landing.png",
+    logo: "",
+    accent: "from-emerald-600/30 via-emerald-500/20 to-transparent",
+  },
+  {
+    title: "Aether",
+    description:
+      "A zero-knowledge dark pool DEX for large-block trades, where sealed orders are matched in batch auctions at a uniform clearing price so there is nothing in the mempool to front-run.",
+    tags: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Express",
+      "MongoDB",
+      "Circom",
+      "Groth16",
+      "Stellar",
+      "Soroban",
+      "Rust",
+    ],
+    codeHref: "https://github.com/saxux2/Aether",
+    liveHref: "https://aetherstellar.vercel.app",
+    image: "/aether-landing.png",
+    logo: "/aether-logo.png",
+    accent: "from-violet-600/30 via-violet-500/20 to-transparent",
+  },
+  {
+    title: "OnMint",
+    description:
+      "A decentralized buy now, pay later protocol where on-time repayment builds an onchain credit score, unlocking undercollateralized USDC limits without a traditional lender.",
+    tags: [
+      "Solidity",
+      "Hardhat",
+      "OpenZeppelin",
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "wagmi",
+      "viem",
+      "RainbowKit",
+      "Polygon",
+    ],
+    codeHref: "https://github.com/saxux2/Onmint",
+    liveHref: "#contact",
+    image: "/onmint-landing.png",
+    logo: "",
+    accent: "from-amber-600/30 via-amber-500/20 to-transparent",
   },
 ];
 
@@ -278,38 +346,59 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid gap-6 lg:grid-cols-2">
+          <div className="mx-auto grid max-w-4xl gap-5 lg:grid-cols-2">
             {projects.map((project) => (
-              <article key={project.title} className="group overflow-hidden rounded-[2rem] bg-zinc-950/75">
-                <div className="overflow-hidden">
+              <article key={project.title} className="group overflow-hidden rounded-[1.5rem] bg-zinc-950/75">
+                <div className="relative overflow-hidden">
+                  {project.logo ? (
+                    <div className="pointer-events-none absolute right-4 top-4 z-10 flex h-11 w-11 items-center justify-center rounded-xl border border-white/15 bg-black/60 backdrop-blur-sm">
+                      <img
+                        src={project.logo}
+                        alt={`${project.title} logo`}
+                        className="h-6 w-6 object-contain invert"
+                        loading="lazy"
+                      />
+                    </div>
+                  ) : null}
+
+                  {project.image ? (
                     <img
-                      src="/relixa-landing.png"
+                      src={project.image}
                       alt={`${project.title} landing page screenshot`}
-                      className="block h-auto w-full align-top transition duration-500 ease-out will-change-transform group-hover:scale-[1.035] group-hover:brightness-110"
+                      className="block aspect-[1903/872] w-full object-cover object-top align-top transition duration-500 ease-out will-change-transform group-hover:scale-[1.035] group-hover:brightness-110"
                       loading="lazy"
                     />
+                  ) : (
+                    <div
+                      className={`flex aspect-[1903/872] w-full items-center justify-center bg-gradient-to-br ${project.accent} transition duration-500 ease-out will-change-transform group-hover:scale-[1.035] group-hover:brightness-110`}
+                    >
+                      <span className="text-4xl font-semibold tracking-tight text-white/90 sm:text-5xl">
+                        {project.title}
+                      </span>
+                    </div>
+                  )}
                 </div>
 
-                <div className="p-6">
-                  <p className="text-base leading-7 text-zinc-300">{project.description}</p>
+                <div className="p-5">
+                  <p className="text-sm leading-6 text-zinc-300">{project.description}</p>
 
-                  <div className="mt-5 flex flex-wrap gap-2">
+                  <div className="mt-4 flex flex-wrap gap-1.5">
                     {project.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-sm text-zinc-300"
+                        className="rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1 text-xs text-zinc-300"
                       >
                         {tag}
                       </span>
                     ))}
                   </div>
 
-                  <div className="mt-6 flex flex-wrap gap-3">
+                  <div className="mt-5 flex flex-wrap gap-2.5">
                     <a
                       href={project.codeHref}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="rounded-full border border-white/15 px-5 py-3 text-sm font-medium text-white transition hover:border-white/35 hover:bg-white/5"
+                      className="rounded-full border border-white/15 px-4 py-2 text-xs font-medium text-white transition hover:border-white/35 hover:bg-white/5"
                     >
                       View Code
                     </a>
@@ -317,7 +406,7 @@ export default function Home() {
                       href={project.liveHref}
                       target={project.liveHref.startsWith("http") ? "_blank" : undefined}
                       rel={project.liveHref.startsWith("http") ? "noopener noreferrer" : undefined}
-                      className="rounded-full bg-white px-5 py-3 text-sm font-medium text-black transition hover:bg-zinc-200"
+                      className="rounded-full bg-white px-4 py-2 text-xs font-medium text-black transition hover:bg-zinc-200"
                     >
                       {project.liveHref.startsWith("http") ? "Live Demo" : "Discuss Project"}
                     </a>
@@ -334,6 +423,64 @@ export default function Home() {
           </div>
 
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {/* Co-Founder */}
+            <div className="group relative">
+              <div className="relative h-full flex flex-col justify-between bg-gradient-to-r from-white/5 to-white/[0.02] backdrop-blur-sm border border-white/10 rounded-2xl p-5 hover:border-white/20 transition-all duration-300">
+                <div>
+                  <div className="flex items-start gap-3 mb-2">
+                    <div className="shrink-0 w-10 h-10 bg-gradient-to-br from-white/15 to-white/5 rounded-xl flex items-center justify-center border border-white/10">
+                      <img src="/kryon-logo.jpg" alt="Kryon logo" className="h-full w-full rounded-xl object-cover" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-bold text-sm md:text-base text-white leading-tight">Co-Founder — Kryon</h3>
+                      <div className="flex items-center justify-between mt-1">
+                        <p className="text-gray-300 font-medium text-xs">Perpetual Futures DEX</p>
+                        <span className="text-gray-400 text-xs font-medium">2026 - Present</span>
+                      </div>
+                    </div>
+                  </div>
+                  <p className="text-xs text-zinc-300 leading-relaxed mt-2">Co-founded Kryon and launched it on Stellar mainnet — a perpetuals exchange pairing off-chain CLOB matching for low-latency execution with fully onchain custody, margin, funding, and settlement.</p>
+                </div>
+                <div className="flex flex-wrap gap-1.5 mt-3">
+                  {["Rust", "Soroban", "Next.js", "TypeScript", "PostgreSQL", "Perps", "Mainnet"].map((tag) => (
+                    <span key={tag} className="text-[10px] md:text-xs px-2 py-1 bg-white/10 text-gray-300 rounded-full border border-white/10 font-medium">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.01] to-transparent rounded-2xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            </div>
+
+            {/* Founder */}
+            <div className="group relative">
+              <div className="relative h-full flex flex-col justify-between bg-gradient-to-r from-white/5 to-white/[0.02] backdrop-blur-sm border border-white/10 rounded-2xl p-5 hover:border-white/20 transition-all duration-300">
+                <div>
+                  <div className="flex items-start gap-3 mb-2">
+                    <div className="shrink-0 w-10 h-10 bg-gradient-to-br from-white/15 to-white/5 rounded-xl flex items-center justify-center border border-white/10">
+                      <img src="/aether-logo.png" alt="Aether logo" className="w-[18px] h-[18px] object-contain invert" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-bold text-sm md:text-base text-white leading-tight">Founder — Aether</h3>
+                      <div className="flex items-center justify-between mt-1">
+                        <p className="text-gray-300 font-medium text-xs">ZK Dark Pool DEX</p>
+                        <span className="text-gray-400 text-xs font-medium">2026 - Present</span>
+                      </div>
+                    </div>
+                  </div>
+                  <p className="text-xs text-zinc-300 leading-relaxed mt-2">Founded and shipped Aether to Stellar mainnet, owning the protocol design, ZK circuits, Soroban contracts, batch-auction relayer, and trading interface end to end.</p>
+                </div>
+                <div className="flex flex-wrap gap-1.5 mt-3">
+                  {["Protocol Design", "Rust", "Soroban", "Circom", "Groth16", "Next.js", "Mainnet"].map((tag) => (
+                    <span key={tag} className="text-[10px] md:text-xs px-2 py-1 bg-white/10 text-gray-300 rounded-full border border-white/10 font-medium">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.01] to-transparent rounded-2xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            </div>
+
             {/* Card 1 */}
             <div className="group relative">
               <div className="relative h-full flex flex-col justify-between bg-gradient-to-r from-white/5 to-white/[0.02] backdrop-blur-sm border border-white/10 rounded-2xl p-5 hover:border-white/20 transition-all duration-300">
@@ -486,6 +633,64 @@ export default function Home() {
                     </div>
                   </div>
                   <p className="text-xs text-zinc-300 leading-relaxed mt-2">Winner of the KGEG Binary v2 TechFest Hackathon, recognized for building an innovative full-stack blockchain solution.</p>
+                </div>
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.01] to-transparent rounded-2xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            </div>
+
+            {/* Card 6 */}
+            <div className="group relative">
+              <div className="relative h-full flex flex-col justify-between bg-gradient-to-r from-white/5 to-white/[0.02] backdrop-blur-sm border border-white/10 rounded-2xl p-5 hover:border-white/20 transition-all duration-300">
+                <div>
+                  <div className="flex items-start gap-3 mb-2">
+                    <div className="shrink-0 w-10 h-10 bg-gradient-to-br from-white/15 to-white/5 rounded-xl flex items-center justify-center border border-white/10">
+                      <img src="/ethereum-logo.jpg" alt="Ethereum logo" className="h-full w-full rounded-xl bg-white object-contain p-1" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-bold text-sm md:text-base text-white leading-tight">EVM &amp; Ethereum Development</h3>
+                      <div className="flex items-center justify-between mt-1">
+                        <p className="text-gray-300 font-medium text-xs">Smart Contracts</p>
+                        <span className="text-gray-400 text-xs font-medium">2025 - Present</span>
+                      </div>
+                    </div>
+                  </div>
+                  <p className="text-xs text-zinc-300 leading-relaxed mt-2">Writing and deploying Solidity contracts across EVM chains, from ERC standards and token flows to lending logic, wired to production frontends.</p>
+                </div>
+                <div className="flex flex-wrap gap-1.5 mt-3">
+                  {["Solidity", "Hardhat", "OpenZeppelin", "ethers.js", "wagmi", "viem", "Polygon", "Celo"].map((tag) => (
+                    <span key={tag} className="text-[10px] md:text-xs px-2 py-1 bg-white/10 text-gray-300 rounded-full border border-white/10 font-medium">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.01] to-transparent rounded-2xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            </div>
+
+            {/* Card 7 */}
+            <div className="group relative">
+              <div className="relative h-full flex flex-col justify-between bg-gradient-to-r from-white/5 to-white/[0.02] backdrop-blur-sm border border-white/10 rounded-2xl p-5 hover:border-white/20 transition-all duration-300">
+                <div>
+                  <div className="flex items-start gap-3 mb-2">
+                    <div className="shrink-0 w-10 h-10 bg-gradient-to-br from-white/15 to-white/5 rounded-xl flex items-center justify-center border border-white/10">
+                      <img src="/stellar-logo.jpg" alt="Stellar logo" className="h-full w-full rounded-xl object-cover invert" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-bold text-sm md:text-base text-white leading-tight">Stellar &amp; Soroban Development</h3>
+                      <div className="flex items-center justify-between mt-1">
+                        <p className="text-gray-300 font-medium text-xs">Ongoing</p>
+                        <span className="text-gray-400 text-xs font-medium">2026 - Present</span>
+                      </div>
+                    </div>
+                  </div>
+                  <p className="text-xs text-zinc-300 leading-relaxed mt-2">Building continuously on Stellar — Rust Soroban contracts shipped to testnet and mainnet, paired with zero-knowledge proving and wallet integration.</p>
+                </div>
+                <div className="flex flex-wrap gap-1.5 mt-3">
+                  {["Rust", "Soroban", "Stellar SDK", "Freighter", "Circom", "Groth16", "Poseidon"].map((tag) => (
+                    <span key={tag} className="text-[10px] md:text-xs px-2 py-1 bg-white/10 text-gray-300 rounded-full border border-white/10 font-medium">
+                      {tag}
+                    </span>
+                  ))}
                 </div>
               </div>
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.01] to-transparent rounded-2xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
