@@ -69,7 +69,6 @@ const projects = [
     codeHref: "https://github.com/saxux2/Relixa",
     liveHref: "https://relixa.vercel.app/",
     image: "/relixa-landing.png",
-    logo: "",
     accent: "from-blue-600/30 via-blue-500/20 to-transparent",
   },
   {
@@ -90,7 +89,6 @@ const projects = [
     codeHref: "https://github.com/saxux2/Vault",
     liveHref: "https://vaultstellar.vercel.app",
     image: "/vault-landing.png",
-    logo: "",
     accent: "from-emerald-600/30 via-emerald-500/20 to-transparent",
   },
   {
@@ -113,7 +111,6 @@ const projects = [
     codeHref: "https://github.com/saxux2/Aether",
     liveHref: "https://aetherstellar.vercel.app",
     image: "/aether-landing.png",
-    logo: "/aether-logo.png",
     accent: "from-violet-600/30 via-violet-500/20 to-transparent",
   },
   {
@@ -135,7 +132,6 @@ const projects = [
     codeHref: "https://github.com/saxux2/Onmint",
     liveHref: "#contact",
     image: "/onmint-landing.png",
-    logo: "",
     accent: "from-amber-600/30 via-amber-500/20 to-transparent",
   },
 ];
@@ -349,18 +345,7 @@ export default function Home() {
           <div className="mx-auto grid max-w-4xl gap-5 lg:grid-cols-2">
             {projects.map((project) => (
               <article key={project.title} className="group overflow-hidden rounded-[1.5rem] bg-zinc-950/75">
-                <div className="relative overflow-hidden">
-                  {project.logo ? (
-                    <div className="pointer-events-none absolute right-4 top-4 z-10 flex h-11 w-11 items-center justify-center rounded-xl border border-white/15 bg-black/60 backdrop-blur-sm">
-                      <img
-                        src={project.logo}
-                        alt={`${project.title} logo`}
-                        className="h-6 w-6 object-contain invert"
-                        loading="lazy"
-                      />
-                    </div>
-                  ) : null}
-
+                <div className="overflow-hidden">
                   {project.image ? (
                     <img
                       src={project.image}
